@@ -1,0 +1,35 @@
+#showPostComps {
+    display: flex;
+    flex-direction: column;
+    
+
+    background-color: rgb(75, 114, 187);
+
+}
+
+#show-UserName {}
+
+#div-img {}
+
+#imgToPost {
+    border-radius: 50px;
+    width: 100px;
+    height: 100px;
+}
+
+#Bar {
+    display: flex;
+    justify-content: space-around;
+}
+
+#BarLike {
+    display: flex;
+}
+
+#BarDetails {
+    display: flex;
+}
+#btnToLike{
+    width: 40px;
+    height: 40px;
+}

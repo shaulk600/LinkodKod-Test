@@ -1,0 +1,13 @@
+Defining types:
+
+variable 'like' in Post type
+ contains User type strings , realization of userName for User
+
+ Also, the name of the person  in Post type
+ who uploaded the post will be of type user.
+
+
+variable 'like' in Post type
+
+//מתודה להעלאת לייק - בהמשך
+בדף Post.tsx
