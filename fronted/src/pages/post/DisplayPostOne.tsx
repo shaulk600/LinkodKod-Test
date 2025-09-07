@@ -1,7 +1,7 @@
 import "./DisplayPostOne.css";
 import PostComponents from "../../components/post/PostComponents";
 
-// import { arrToPost } from "../../../../DB/Hoock.ts"; to more obj
+//  to more obj
 
 export default function DisplayPostOne() {
     
