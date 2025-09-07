@@ -1,0 +1,7 @@
+vs/
+bin/
+node_modules/
+
+.env
+env.js
+package-lock.json

@@ -1,0 +1,14 @@
+{
+  "name": "07-09-25-test",
+  "version": "1.0.0",
+  "description": "Form in editing process ...",
+  "main": "index.js",
+  "type": "module",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start":""
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC"
+}
