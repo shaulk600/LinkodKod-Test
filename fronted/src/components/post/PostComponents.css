@@ -1,21 +1,33 @@
 #showPostComps {
+    height: 200px;
+    width: 400px;
+    
     display: flex;
     flex-direction: column;
-    
-
     background-color: rgb(75, 114, 187);
+    border: 3px double black;
 
 }
 
-#show-UserName {}
+#show-UserName {
+    /* position: relative;
+    top: 0;
+    left: 0; */
+}
 
-#div-img {}
+#div-img {
+    width: 100%;
+    height: 25%;
+    /* overflow: hidden; */
+}
 
 #imgToPost {
-    border-radius: 50px;
-    width: 100px;
-    height: 100px;
+    width: 100%;
+    width: 100%;
+    object-fit: cover;
+   
 }
+
 
 #Bar {
     display: flex;
@@ -32,4 +44,10 @@
 #btnToLike{
     width: 40px;
     height: 40px;
+    background-color: rgb(75, 114, 187);
+}
+
+#descriptionDiv{
+    border-top: 1px solid black;
+    background-color: white;
 }
