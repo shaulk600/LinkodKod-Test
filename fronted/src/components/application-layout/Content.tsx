@@ -6,6 +6,13 @@ import { useEffect, useState } from "react";
 export default function Content() {
 
   const [idDiv, setIdDiv] = useState("a");
+  const [idToBtnLike, setIdToBtnLike] = useState('like1');
+  
+  //This method is used to change the name of the button ID when creating a new component.
+  const sendIdToButton = (): string => {
+    setIdToBtnLike(idToBtnLike + idToBtnLike);
+    return idToBtnLike;
+  }
 
   const GoSpecificPost = (e: React.MouseEvent<HTMLDivElement, MouseEvent>) => {
     const descriptionSearch = e.currentTarget.description.value;
@@ -17,16 +24,16 @@ export default function Content() {
 
 
 
-  useEffect(() => {
+  // useEffect(() => {
 
-  }, [arrToPost])
+  // }, [arrToPost]);
 
   return (
 
     <div id="postsMenu" >
       {
         arrToPost.map(post => {
-          return <div id="idDiv" className="posts" onClick={(e) => {
+          return <div id={idDiv} className="posts" onClick={(e) => {
             GoSpecificPost(e);
             setIdDiv(idDiv + idDiv); //return 'aa'
           }}>
@@ -34,7 +41,8 @@ export default function Content() {
             < PostComponents postObj={{
               imageUrl: post.imageUrl, description: post.description, likes: post.likes,
               userName: post.userName, createdAt: post.createdAt
-            }} />
+            }} idToBtn={()=>sendIdToButton()} />
+
 
           </div>
 

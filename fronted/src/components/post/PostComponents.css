@@ -41,10 +41,15 @@
 #BarDetails {
     display: flex;
 }
-#btnToLike{
+#btnIDLike{
     width: 40px;
     height: 40px;
+}
+.btnclassLike{
     background-color: rgb(75, 114, 187);
+}
+.btnClassLikeIsTrue{
+    background-color: rgb(24, 61, 129);
 }
 
 #descriptionDiv{

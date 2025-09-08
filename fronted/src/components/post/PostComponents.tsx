@@ -2,16 +2,28 @@ import { useState } from "react";
 // import type { Post } from "../../logic/post/Post";
 import "./PostComponents.css";
 
-export default function PostComponents({ postObj }) {
+export default function PostComponents({ postObj, idToBtn }) {
     const imageUrl = postObj.imageUrl;
     const description = postObj.description;
-    const likes = postObj.likes;
+    const likes: string[] = postObj.likes;
     const countLikes: number = likes.length;
 
     // userName and CreateAt can not by change
+    
+    //like . :
     const [inLiked, setInLiked] = useState(false);
+    const btnIdLike = document.getElementById(idToBtn);
     const addLike = () => {
+        if (!inLiked) {
+            //Currently it works even without entering a username. We will change this later.
+            likes.push('a');
+            btnIdLike?.classList.add('btnClassLikeIsTrue');
+        } else {
+            likes.pop();
+            btnIdLike?.classList.remove('btnClassLikeIsTrue');
+        }
         setInLiked(e => !e);
+
         // if(inLiked){
         //     // setLikes(userCurrect)
         // }
@@ -22,7 +34,9 @@ export default function PostComponents({ postObj }) {
         // method to create in logic files and fetch
         // end use UseState to do
     }
+    // useEffect(() => {
 
+    // }, [inLiked])
     return (
         <>
             <section id="showPostComps">
@@ -39,7 +53,7 @@ export default function PostComponents({ postObj }) {
                     <div id="Bar">
                         <div id="BarLike">
                             <p>{countLikes}</p>
-                            <button id="btnToLike" onClick={addLike}><img src="/compsImg/likeR.png" alt="like" /></button>
+                            <button id="btnIDLike" className="btnclassLike" onClick={addLike}><img src="/compsImg/likeR.png" alt="like" /></button>
                         </div>
                         <div id="BarDetails">
                             <p>{postObj.createdAt}</p>
