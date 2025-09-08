@@ -1,14 +1,12 @@
 import { Route, Routes } from 'react-router';
-import DisplayPosts from '../post/DisplayPosts';
-import DisplayPostOne from "../post/DisplayPostOne";
+import Layout from "../layout/Layout";
 
 export default function RouteApp() {
     return (
         <div>
             
             <Routes>
-                <Route path="/a" element={< DisplayPostOne /> } />
-                <Route path="/" element={< DisplayPosts /> } />
+                <Route path="/" element={< Layout /> } />
             </Routes>
           
             
