@@ -1,0 +1,14 @@
+#postsMenu{
+    
+
+
+    display: flex;
+    
+    flex-direction: column;
+    flex-wrap: wrap;
+}
+
+.posts{
+    
+    gap: 10px;
+}

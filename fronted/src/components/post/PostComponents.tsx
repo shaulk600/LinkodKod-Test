@@ -49,7 +49,7 @@ export default function PostComponents({ postObj }) {
 
                 </section>
 
-                <div>
+                <div id="descriptionDiv">
                     <p>{description}</p>
                 </div>
 
