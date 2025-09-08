@@ -1,7 +1,13 @@
 import { handlReadRequesting } from "../controllers/PostsCTRL.js";
+
 export default function ConfigRoutes(app) {
 
-    app.get('/read/',handlReadRequesting);
+    app.get('/read', (req,res,next) => {
+        console.log('');
+        console.log(`hii route`);
+        console.log('');
+        next();
+    }, handlReadRequesting);
 
 
 

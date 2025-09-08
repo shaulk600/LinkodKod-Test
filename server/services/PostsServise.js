@@ -1,20 +1,25 @@
 import { readFile, writeFileSync } from 'fs';
 
-const urlDB = '../DB/Posts.tst'
+const urlDB = './DB/Posts.txt'
 
 
-export function readFileS() {
-    const resMessage = {success:'',dataMessage:''};
+export async function readFileS() {
+    let resMessage = { success: '', dataMessage: '' };
 
     readFile(urlDB, { encoding: 'utf-8' }, (err, data) => {
         if (err) {
-            return resMessage = { success: 'failed', dataMessage: err };
+            resMessage = { success: 'failed', dataMessage: err };
+            console.log(`resMessage data:${resMessage.success} - ${resMessage.dataMessage}`);
+            return resMessage;
         }
         if (data) {
-            return resMessage = { success: 'success', dataMessage: data };
+            resMessage = { success: 'success', dataMessage: data };
+            console.log(`resMessage err:${resMessage.success}`);
+            return resMessage;
 
         }
     });
+    return resMessage;
 
 }
 
@@ -25,17 +30,19 @@ export function writeAllPosts(dataToWrite) {
 }
 
 // read:
-export function readPosts() {
-    const resMessage = {status:'',data:''};
+export async function readPosts() {
+    let resMessage = { status: '', data: '' };
 
-    const res = readFileS();
+    const res = await readFileS();
     if (res.success === 'success') {
         const data = JSON.parse(res.dataMessage);
-        return resMessage = { status: 'ok', data: data };
+        resMessage = { status: 'ok', data: res.dataMessage };
+        return resMessage;
     }
     else {
         const err = res.dataMessage
-        return resMessage = { status: 'failed', data: err };
+        resMessage = { status: 'failed', data: res.dataMessage };
+        return resMessage;
     }
 }
 
