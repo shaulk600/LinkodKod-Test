@@ -10,12 +10,6 @@
    
 }
 #headerPage{
-    /* position: absolute;
-    top: 0;s
-    left: 0;
-    width: 100vw;
-    height: 250px; */
-
     height: 20%;
 
     display: flex;
@@ -34,7 +28,9 @@
     display: flex;
     flex-direction: column;
     align-items: center;
+    
     min-height: 80%;
+    
     background-color: rgb(103, 89, 230);
 
 }
