@@ -1,0 +1,9 @@
+
+
+file servicePosts: 
+
+in function 'readPosts': 
+The mission to read all the data - it returns in the following format:
+Object = { status: 'ok'/'failed' , data: 'your data'/data: 'message Error' };
+
+
