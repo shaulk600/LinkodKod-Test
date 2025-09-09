@@ -1,5 +1,5 @@
 import { useState } from "react";
-// import type { Post } from "../../logic/post/Post";
+import type { Post } from "../../logic/post/Post";
 import "./PostComponents.css";
 
 export default function PostComponents({ postObj, idToBtn }) {
@@ -7,9 +7,14 @@ export default function PostComponents({ postObj, idToBtn }) {
     const description = postObj.description;
     const likes: string[] = postObj.likes;
     const countLikes: number = likes.length;
-
+    // ///////
+    // const [imageUrl, setImageUrl] = useState(postObj.imageUrl);
+    // const [description, setDescription] = useState(postObj.description);
+    // const [likes, setLikes] = useState(postObj.likes);
+    // const countLikes: number = likes.length;
+    // ////
     // userName and CreateAt can not by change
-    
+
     //like . :
     const [inLiked, setInLiked] = useState(false);
     const btnIdLike = document.getElementById(idToBtn);
@@ -30,10 +35,7 @@ export default function PostComponents({ postObj, idToBtn }) {
 
         // setLikes()  // method to create in logic files and fetch
     }
-    const editPost = () => {
-        // method to create in logic files and fetch
-        // end use UseState to do
-    }
+    
     // useEffect(() => {
 
     // }, [inLiked])
