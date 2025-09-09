@@ -15,11 +15,12 @@ export async function readPostsFile() {
     //         resolve(data);
     //     });
     // });
-    console.log(`\n-- Log Flow: postServises\n  function readPostsFile: `);
-    try{
-    return await fs.readFile(urlDB,'utf-8');
-    }catch(err){
-        console.log('Err is: ',err);
+
+    try {
+        console.log(`\n-- Log Flow: postServises\n  function readPostsFile: `);
+        return await fs.readFile(urlDB, 'utf-8');
+    } catch (err) {
+        console.log('Err is: ', err);
     }
 }
 
