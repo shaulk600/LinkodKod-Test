@@ -1,31 +1,33 @@
 import express from "express";
 //services:
 import { readPosts } from "../services/PostsServise.js";
+import { error } from "console";
 
 
 
 export async function handlReadRequesting(req, res) {
-
-    console.log('');
-    console.log(`hii CTRLRequest`);
-    console.log('');
-
-    const handlingRead = await readPosts();
-    if (handlingRead.status === 'ok') {
+    console.log(`\n-- Log Flow: CTRLPosts\n  function handlReadRequesting: `);
+    try {
+        const handlingRead = await readPosts(); //{let resMessage = { status: 'ok/failed', data: '' };}
+        console.log(handlingRead);
         
-        console.log('');
-        console.log(`hii CTRLRequest - res data`);
-        console.log('');
-
-        res.status(200).json(handlingRead.data);
+        if (!handlingRead['status'] && !handlingRead['data']) {
+            console.log(` Log Flow: CTRLPosts\n  function handlReadRequesting: \n  throw Error  \n   msg: !handlingRead.status && !handlingRead.data \n   Error: Obj returned`);
+            res.sendStatus(500);
+        }
+        else {
+            if (handlingRead.status === 'ok') {
+                console.log(` Log Flow: CTRLPosts\n  function handlReadRequesting: \n  handlingRead.status returned -ok- :  \n   the meassage: ${handlingRead.data}.`);
+                res.status(200).json(handlingRead.data);
+            }
+            else if (handlingRead.status === 'failed') {
+                console.log(` Log Flow: CTRLPosts\n  function handlReadRequesting: \n  handlingRead.status returned -failed- :  \n   the meassage: ${handlingRead.data}.`);
+                res.sendStatus(500);
+            }
+        }
     }
-    if (handlingRead.status === 'failed') {
-        console.log('');
-        console.log(`hii CTRLRequest - res Err`);
-        console.log('');
-
-        console.log(`Error log: Post Controller: \n An error occurred while retrieving data from a DB file \n Error type: Server`);
-        console.log('the message is: ', handlingRead.data);
-        res.sendStatus(502);
+    catch (err) {
+        console.log(` Log Error: \n  function handlReadRequesting:  -catch-  \n   the meassage: ${err}`);
+        res.sendStatus(500);
     }
 }
