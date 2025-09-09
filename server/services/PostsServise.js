@@ -1,48 +1,58 @@
-import { readFile, writeFileSync } from 'fs';
+import fs from 'fs/promises';
+
 
 const urlDB = './DB/Posts.txt'
 
-
-export async function readFileS() {
-    let resMessage = { success: '', dataMessage: '' };
-
-    readFile(urlDB, { encoding: 'utf-8' }, (err, data) => {
-        if (err) {
-            resMessage = { success: 'failed', dataMessage: err };
-            console.log(`resMessage data:${resMessage.success} - ${resMessage.dataMessage}`);
-            return resMessage;
-        }
-        if (data) {
-            resMessage = { success: 'success', dataMessage: data };
-            console.log(`resMessage err:${resMessage.success}`);
-            return resMessage;
-
-        }
+export async function readPostsFile() {
+    return new Promise((resolve, reject) => {
+        fs.readFile(urlDB, 'utf-8', function (err, data) {
+            if (err) {
+                reject(err);
+            }
+            resolve(data);
+        });
     });
-    return resMessage;
+}
+
+
+export async function writeAllPosts(dataToWrite) { //dataToWrite:string
+    const res = ''
+    try {
+        res = await fs.writeFile(urlDB, dataToWrite, 'utf-8');
+        return await res;
+    }
+    catch (err) {
+        res = 'no';
+        return res;
+    }
 
 }
 
-export function writeAllPosts(dataToWrite) {
-    const data = JSON.stringify(dataToWrite);
-    const res = writeFileSync(urlDB, data, { encoding: 'utf-8' });
-    return res;
-}
 
 // read:
+/**
+ * 
+ * @returns {object}status: 'ok'/'failed', data: data/err
+ */
 export async function readPosts() {
+    // console.log(`\n--test Log Flow: ServicesPost\n  function readPosts: `);
     let resMessage = { status: '', data: '' };
-
-    const res = await readFileS();
-    if (res.success === 'success') {
-        const data = JSON.parse(res.dataMessage);
-        resMessage = { status: 'ok', data: res.dataMessage };
-        return resMessage;
-    }
-    else {
-        const err = res.dataMessage
-        resMessage = { status: 'failed', data: res.dataMessage };
-        return resMessage;
+    try {
+        const res = await readPostsFile();
+        if (res === '') {
+            resMessage = { status: 'failed', data: `res is undefined` };
+        }
+        // send to valid הפיכה לגייסון וחזרה לסטרינג
+        if (res[0] === "[" && res[res.length - 1] === "]") {
+            resMessage = { status: 'ok', data: res };
+        } else {
+            resMessage = { status: 'ok', data: '[isEmpty]' };
+        }
+        return await resMessage;
+    } catch (err) {
+        console.log(`Log Error: \n function readPosts:  catch  \n the meassage: ${err}`);
+        resMessage = { status: 'failed', data: err };
+        return await resMessage;
     }
 }
 
