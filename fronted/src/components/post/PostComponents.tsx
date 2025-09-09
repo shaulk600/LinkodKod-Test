@@ -1,5 +1,5 @@
 import { useState } from "react";
-// import type { Post } from "../../logic/post/Post";
+import type { Post } from "../../logic/post/Post";
 import "./PostComponents.css";
 
 export default function PostComponents({ postObj, idToBtn }) {
@@ -9,7 +9,7 @@ export default function PostComponents({ postObj, idToBtn }) {
     const countLikes: number = likes.length;
 
     // userName and CreateAt can not by change
-    
+
     //like . :
     const [inLiked, setInLiked] = useState(false);
     const btnIdLike = document.getElementById(idToBtn);

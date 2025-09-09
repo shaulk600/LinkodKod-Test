@@ -1,7 +1,7 @@
 import express from "express";
 //services:
 import { readPosts } from "../services/PostsServise.js";
-import { error } from "console";
+
 
 
 

@@ -4,18 +4,28 @@ import fs from 'fs/promises';
 const urlDB = './DB/Posts.txt'
 
 export async function readPostsFile() {
-    return new Promise((resolve, reject) => {
-        fs.readFile(urlDB, 'utf-8', function (err, data) {
-            if (err) {
-                reject(err);
-            }
-            resolve(data);
-        });
-    });
+    // console.log(`\n-- Log Flow: postServises\n  function readPostsFile: `);
+    // return new Promise((resolve, reject) => {
+    //     fs.readFile(urlDB, 'utf-8', function(err, data) {
+    //         if (err) {
+    //             console.log('err', err);
+    //             reject(err);
+    //         }
+    //         console.log('data', data);
+    //         resolve(data);
+    //     });
+    // });
+    console.log(`\n-- Log Flow: postServises\n  function readPostsFile: `);
+    try{
+    return await fs.readFile(urlDB,'utf-8');
+    }catch(err){
+        console.log('Err is: ',err);
+    }
 }
 
 
-export async function writeAllPosts(dataToWrite) { //dataToWrite:string
+export async function writeAllPosts(dataToWrite) {
+    console.log(`\n-- Log Flow: postServises\n  function writeAllPosts: `);
     const res = ''
     try {
         res = await fs.writeFile(urlDB, dataToWrite, 'utf-8');
@@ -35,10 +45,12 @@ export async function writeAllPosts(dataToWrite) { //dataToWrite:string
  * @returns {object}status: 'ok'/'failed', data: data/err
  */
 export async function readPosts() {
-    // console.log(`\n--test Log Flow: ServicesPost\n  function readPosts: `);
+    console.log(`\n--test Log Flow: ServicesPost\n  function readPosts: `);
     let resMessage = { status: '', data: '' };
     try {
+        console.log('function');
         const res = await readPostsFile();
+        console.log('function readPosts: res= ', res);
         if (res === '') {
             resMessage = { status: 'failed', data: `res is undefined` };
         }

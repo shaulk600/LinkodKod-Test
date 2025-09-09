@@ -1,6 +1,7 @@
 
 
 export type Post = {
+    id?:string
     imageUrl: string,
     description: string,
     likes: string[],
