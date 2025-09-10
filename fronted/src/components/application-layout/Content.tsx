@@ -4,7 +4,7 @@ import PostComponents from "../post/PostComponents.tsx";
 import { useEffect, useState } from "react";
 
 import { getAllPosts } from "../../logic/api/APIPost.ts";
-import type { Post } from "../../logic/post/Post.ts";
+// import type { Post } from "../../logic/post/Post.ts";
 
 export default function Content() {
 
