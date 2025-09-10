@@ -13,16 +13,16 @@ export async function handlReadRequesting(req, res) {
         
         if (!handlingRead['status'] && !handlingRead['data']) {
             console.log(` Log Flow: CTRLPosts\n  function handlReadRequesting: \n  throw Error  \n   msg: !handlingRead.status && !handlingRead.data \n   Error: Obj returned`);
-            res.sendStatus(500);
+            res.status(400).json({msg:'Error: Obj returned'});
         }
         else {
             if (handlingRead.status === 'ok') {
                 console.log(` Log Flow: CTRLPosts\n  function handlReadRequesting: \n  handlingRead.status returned -ok- :  \n   the meassage: ${handlingRead.data}.`);
-                res.status(200).json(handlingRead.data);
+                res.status(200).json(`${handlingRead.data}`);
             }
             else if (handlingRead.status === 'failed') {
                 console.log(` Log Flow: CTRLPosts\n  function handlReadRequesting: \n  handlingRead.status returned -failed- :  \n   the meassage: ${handlingRead.data}.`);
-                res.sendStatus(500);
+               res.status(400).json({msg:`${handlingRead.data}`});
             }
         }
     }

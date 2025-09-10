@@ -26,41 +26,33 @@ export default function Content() {
 
 
 
-  const [posts, setPosts] = useState([{},{}]);
+  const [posts, setPosts] = useState([{
+    id:0,
+    imageUrl:`/`,
+    description:"",
+    likes:[],
+    userName:"",
+    createdAt:""
+  }]);
 
-  const displayPosts = (posts) => {
-    return posts.map((post: Post) => {
-      return <div id={`${post.id}Div` || 'aa'} className="posts">
-        < PostComponents postObj={{
-          imageUrl: post.imageUrl, description: post.description, likes: post.likes,
-          userName: post.userName, createdAt: post.createdAt
-        }} idToBtn={post.id || 'aa'} />
-      </div>
-    })
+  // getPosts
+  useEffect(() => {
 
-  
-    // setPosts(displayPosts);
-}
-
-useEffect(() => {
-  debugger
-  const res = async() => {await fetch("http://localhost:3002/read").then(async(data)=>{
-    setPosts(data, ...posts);
-    displayPosts(posts);
-  })
-  res
-}
-  
-  // getAllPosts().then((data) => {
-  //   console.log('dataPost:', data);
-  //   // getPosts(data);
-  // })
-    
+    getAllPosts().then(data => setPosts(data.slice(0, 2)));
   }, []);
 
-return (
-  <div id="postsMenu" >
-    {displayPosts(posts)}
-  </div >
-) 
+  return (
+    <div id="postsMenu" >
+
+      {posts && (
+        posts.map(post => (
+        <div id={`${post.id}Div`} className="posts">
+          < PostComponents postObj={{
+            imageUrl: post.imageUrl, description: post.description, likes: post.likes,
+            userName: post.userName, createdAt: post.createdAt
+          }} idToBtn={post.id || 'aa'} />
+        </div>
+      )))/* (displayPosts(posts) ) */}
+    </div >
+  )
 }
