@@ -1,18 +1,16 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import type { Post } from "../../logic/post/Post";
 import "./PostComponents.css";
 
 export default function PostComponents({ postObj, idToBtn }) {
-    const imageUrl = postObj.imageUrl;
-    const description = postObj.description;
-    const likes: string[] = postObj.likes;
-    const countLikes: number = likes.length;
-    // ///////
-    // const [imageUrl, setImageUrl] = useState(postObj.imageUrl);
-    // const [description, setDescription] = useState(postObj.description);
-    // const [likes, setLikes] = useState(postObj.likes);
-    // const countLikes: number = likes.length;
-    // ////
+
+    const [imageUrl, setImageUrl] = useState("postObj.imageUrl");
+    const [description, setDescription] = useState("postObj.description");
+    const [likes, setLikes] = useState("postObj.likes");
+    const [countLikes, setCountLikes] = useState(0);
+    const [userName, setUserName] = useState("postObj.userName");
+    const [createdAt, setCreatedAt] = useState("postObj.createdAt");
+
     // userName and CreateAt can not by change
 
     //like . :
@@ -35,16 +33,23 @@ export default function PostComponents({ postObj, idToBtn }) {
 
         // setLikes()  // method to create in logic files and fetch
     }
-    
-    // useEffect(() => {
 
-    // }, [inLiked])
+    useEffect(() => {
+        setImageUrl(postObj.imageUrl)
+        setDescription(postObj.description)
+        setLikes([postObj.llikes, ...likes])
+        setCountLikes(likes.length)
+        setUserName(postObj.userName)
+        setCreatedAt(postObj.createdAt)
+    }, [inLiked]) //בעת נתינת לייק הדף שוב יתרנדרX
+
+
     return (
         <>
             <section id="showPostComps">
 
                 <div id="show-UserName">
-                    <p>{postObj.userName}</p>
+                    <p>{userName}</p>
                 </div>
 
                 <section>
@@ -58,9 +63,9 @@ export default function PostComponents({ postObj, idToBtn }) {
                             <button id="btnIDLike" className="btnclassLike" onClick={addLike}><img src="/compsImg/likeR.png" alt="like" /></button>
                         </div>
                         <div id="BarDetails">
-                            <p>{postObj.createdAt}</p>
+                            <p>{createdAt}</p>
                         </div>
-                        <button id="btnEdit" onClick={editPost}> Edit Post</button>
+                        {/* <button id="btnEdit" onClick={editPost}> Edit Post</button> */}
                     </div>
 
                 </section>

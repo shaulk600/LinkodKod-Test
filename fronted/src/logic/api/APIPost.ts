@@ -1,14 +1,12 @@
 const APIURL: string = 'http://localhost:3002'
 
 export async function getAllPosts() {
-    // try {
-        const res = await fetch("http://localhost:3002/read").then((data)=>console.log(data))
-        // console.log(res);
-        // return await res.json();
-    // } catch (err) {
-    //     console.log('errGetAllPosts', err)
-    // }
-
+    try {
+        const res = await fetch("http://localhost:3002/read");
+        return await res.json();
+    } catch (err) {
+        console.log('err - GetAllPosts', err);
+    }
 }
 
 export async function initPoat(data: object) {

@@ -4,18 +4,6 @@ import fs from 'fs/promises';
 const urlDB = './DB/Posts.txt'
 
 export async function readPostsFile() {
-    // console.log(`\n-- Log Flow: postServises\n  function readPostsFile: `);
-    // return new Promise((resolve, reject) => {
-    //     fs.readFile(urlDB, 'utf-8', function(err, data) {
-    //         if (err) {
-    //             console.log('err', err);
-    //             reject(err);
-    //         }
-    //         console.log('data', data);
-    //         resolve(data);
-    //     });
-    // });
-
     try {
         console.log(`\n-- Log Flow: postServises\n  function readPostsFile: `);
         return await fs.readFile(urlDB, 'utf-8');
@@ -61,11 +49,11 @@ export async function readPosts() {
         } else {
             resMessage = { status: 'ok', data: '[isEmpty]' };
         }
-        return await resMessage;
+        return  resMessage;
     } catch (err) {
         console.log(`Log Error: \n function readPosts:  catch  \n the meassage: ${err}`);
         resMessage = { status: 'failed', data: err };
-        return await resMessage;
+        return  resMessage;
     }
 }
 

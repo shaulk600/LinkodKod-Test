@@ -1,6 +1,7 @@
 import "./PostCreateing.css";
 // import type { Post } from "../../logic/post/Post";
 import { useRef, useState } from "react";
+import { initPoat } from "../../logic/api/APIPost";
 
 export default function PostCreateing() {
 
@@ -9,12 +10,10 @@ export default function PostCreateing() {
     // Uploading the image
     const [potoCreation, setPotoCreation] = useState();
     const choiceCreation = (e: React.ChangeEvent<HTMLInputElement>) => {
-        // setPotoCreation(e.target.files[0]);
-        // במקום זה - לישם את
         const file = URL.createObjectURL(e.target.files[0]);
         setPotoCreation(file);
     }
-    // others
+    // others variables
     const [description, setDescription] = useState("");
     const [likes, setLikes] = useState([""]);
     const [postingName, setPostingName] = useState("");
@@ -23,19 +22,25 @@ export default function PostCreateing() {
 
 
 
-    const objToSend: string[] = useRef([]);
+    const objToSend = useRef([]);
     const send = () => {
 
         objToSend.current([...objToSend, { imageUrl: potoCreation, description: description, likes: likes, userName: postingName, createdAt: uploadDate }])
     }
-    const sendParam = () => {
-        const dataToSend = send();
-        const res = async () => await fetch('http://localhost:3002/initPost', {
-            method: 'post',
-            headers: { "Content-Type": "application/json" },
-            body: JSON.stringify(dataToSend),
-        }).then((data) => { console.log(data) })
+
+    //init
+    async function initPost() {
+        const newPost = await initPoat({
+
+            imageUrl: potoCreation,
+            description: description,
+            likes: likes,
+            userName: postingName,
+            createdAt: uploadDate,
+        })
     }
+
+    
     return (
         <>
             <section id="initPost">
@@ -64,7 +69,7 @@ export default function PostCreateing() {
                         <input type="text" name="dateUpload" id="dateUpload" value={uploadDate} onChange={(e) => setUploadDate(e.target.value)} />
                     </div>
 
-                    <div><button type="submit" onSubmit={ }> send your post </button></div>
+                    <div><button type="submit" onSubmit={initPost}> send your post </button></div>
                 </form>
             </section>
         </>
