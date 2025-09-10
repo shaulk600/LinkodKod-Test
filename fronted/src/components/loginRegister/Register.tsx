@@ -7,12 +7,12 @@ export default function Register() {
     const [email, setEmail] = useState("");
     // const [postsFromUser, setPostsFromUser] = useState([]);
     // אוטוריזיישן
-    const [idManager, setIdManager] = useState("");
+    const [idmanager, setIdManager] = useState("");
 
     const [result, setResult] = useState(null);
 
     async function sendRegister() {
-        const res = await fetch(`http://localhost:3302/register/${idManager}`, {
+        const res = await fetch(`http://localhost:3302/register/${idmanager}`, {
             method: 'POST',
             headers: {
                 "Content-Type": "application/json",

@@ -3,7 +3,7 @@ import express, { request } from "express";
 import { readPosts, readPostById, createNewPost } from "../services/PostsServise.js";
 
 
-request.params
+// request.params
 
 export async function handlReadRequesting(req, res) {
     console.log(`\n-- Log Flow: CTRLPosts\n  function handlReadRequesting: `);
