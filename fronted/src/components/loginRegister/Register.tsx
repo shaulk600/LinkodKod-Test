@@ -12,7 +12,7 @@ export default function Register() {
     const [result, setResult] = useState(null);
 
     async function sendRegister() {
-        const res = await fetch(`http://localhost:3302/Register/${idManager}`, {
+        const res = await fetch(`http://localhost:3302/register/${idManager}`, {
             method: 'POST',
             headers: {
                 "Content-Type": "application/json",
@@ -32,7 +32,7 @@ export default function Register() {
             <div id='header'> <h3>hello Register: </h3></div>
             <section id='loginInside'>
 
-                <form action="/login" method="post">
+                <form action="/register" method="post">
                     <div>
                         <label htmlFor="userName">userName : </label>
                         <input type="text" id='userName' name='userName' onChange={(e) => setUserName(e.target.value)} />
