@@ -87,6 +87,7 @@ export async function CheckUser(dataToSend) {
 // --option = create Token - JWT module
 // -- option = enecription - Bcrypt Module
 
+
 /**
  * 
  * @returns {object}status: 'ok'/'failed'
