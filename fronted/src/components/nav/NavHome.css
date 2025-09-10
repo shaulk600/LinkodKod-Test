@@ -1,15 +1,20 @@
 #compsNavHome {
     height: 100%;
-    min-width: 30px;
-
+    
     display: flex;
+    flex-direction: row ;
+    justify-content: space-around;
+}
 
+.btnNavHead {
+    min-width: 30px;
     background-color: rgb(103, 62, 199);
 }
 
-#compsNavHome:hover {
+#btnNavHead:hover {
     background-color: rgb(30, 32, 129);
 }
-#compsNavHome:focus {
+
+#btnNavHead:focus {
     background-color: rgb(60, 30, 129);
 }
