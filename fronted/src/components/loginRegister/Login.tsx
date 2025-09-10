@@ -31,7 +31,7 @@ export default function Login() {
                     <label htmlFor="userName">userName : </label>
                     <input type="text" id='userName' name='userName' onChange={(e) => setUserName(e.target.value)} />
                     <br />
-                    <label htmlFor="pass">userName : </label>
+                    <label htmlFor="pass">pass : </label>
                     <input type="password" id='pass' name='pass' onChange={(e) => setPass(e.target.value)} />
                     <div><button type='submit' onSubmit={sendLog}></button></div>
                 </form>
