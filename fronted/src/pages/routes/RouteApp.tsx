@@ -1,4 +1,4 @@
-import { Route, Routes } from 'react-router';
+import { Route, Routes  } from 'react-router';
 import Layout from "../layout/Layout";
 import { createContext } from "react";
 
@@ -16,6 +16,7 @@ export default function RouteApp() {
 
                 <Routes>
                     <Route path="/" element={< Layout />} />
+                    
                 </Routes>
 
             </WebsiteUserLogsContext>

@@ -1,14 +1,21 @@
-import { handlReadRequesting } from "../controllers/PostsCTRL.js";
+import { handlReadRequesting ,handlReadRequestingPostById} from "../controllers/PostsCTRL.js";
 
 export default function ConfigRoutes(app) {
 
-    app.get('/read', (req,res,next) => {
-        console.log('');
-        console.log(`hii route`);
-        console.log('');
+    app.get('/read', (req, res, next) => {
+        console.log(`\nvalid: /read\n`);
         next();
     }, handlReadRequesting);
+    
+    app.get('/read/:idPost', (req, res, next) => {
+        console.log(`\nvalid: /read/:idPost\n`);
+        next();
+    }, handlReadRequestingPostById);
 
+    app.get('/initPost/', (req, res, next) => {
+        console.log(`\n valid: /initPost/ \n`);
+        next();
+    }, );
 
 
     app.use('/', (req, res) => {
