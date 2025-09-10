@@ -12,6 +12,10 @@ export default function ConfigRoutes(app) {
         next();
     }, handlReadRequestingPostById);
 
+    app.get('/initPost/', (req, res, next) => {
+        console.log(`\n valid: /initPost/ \n`);
+        next();
+    }, );
 
 
     app.use('/', (req, res) => {

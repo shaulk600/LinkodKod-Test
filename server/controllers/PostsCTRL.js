@@ -1,6 +1,6 @@
 import express, { request } from "express";
 //services:
-import { readPosts, readPostById } from "../services/PostsServise.js";
+import { readPosts, readPostById, createNewPost } from "../services/PostsServise.js";
 
 
 request.params
@@ -61,4 +61,24 @@ export async function handlReadRequestingPostById(req, res) {
         console.log(` Error Log: \n  function handlReadRequestingPostById:  -catch-  .\n   the meassage: ${errLogs}`);
         res.sendStatus(500);
     }
+}
+
+
+export async function handleCreateNewPost(req, res) {
+    console.log(`\n-- Log Flow: CTRLPosts\n  function handleCreateNewPost: \n`);
+    try {
+        const strNewPost = req.body;
+        const objNewPost = JSON.parse(strNewPost);
+        const res = await createNewPost(objNewPost);
+        if (res['status'] === 'ok') {
+            res.status(201).json({ msg: 'success and create Post' })
+        }
+        else {
+            res.status(403).json({ nsg: 'error to createing. try again' })
+        }
+
+    } catch (ErrLog) {
+        console.log(` Error Log: \n  function handleCreateNewPost:  -catch-  .\n   the meassage: ${ErrLog}`);
+    }
+
 }

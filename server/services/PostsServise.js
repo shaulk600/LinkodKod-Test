@@ -17,8 +17,7 @@ export async function writeAllPosts(dataToWrite) {
     console.log(`\n-- Log Flow: postServises\n  function writeAllPosts: `);
     const res = ''
     try {
-        res = await fs.writeFile(urlDB, dataToWrite, 'utf-8');
-        return await res;
+        return await fs.writeFile(urlDB, dataToWrite, 'utf-8');
     }
     catch (err) {
         res = 'no';
@@ -72,7 +71,7 @@ export async function readPostById(idPost) {
         //מכאן לא עובד
         let post = { "a": '' }
         for (let i = 0; i < posts.length; i++) {
-            console.log('i from for => ',posts[i]);
+            console.log('i from for => ', posts[i]);
             if (posts[i].id === idPost) {
                 post = posts[i];
                 break;
@@ -90,7 +89,29 @@ export async function readPostById(idPost) {
     }
     catch (ErrLogs) {
         console.log(`Log Error: \n function readPostById:  catch  \n the meassage: ${ErrLogs}`);
+        res.sendStatus(500);
     }
 }
 
+/**
+ * 
+ * @returns {object} status= ok , data: ?
+ */
+export async function createNewPost(dataPost) {
+    console.log(`\n--Log Flow: ServicesPost\n  function createNewPost: `);
+    try {
+        //valid
+        if (dataPost && dataPost['imageUrl'] && dataPost['description'] && dataPost['likes'] && dataPost['userName'] && dataPost['createdAt']) {
+            const resRead = await readPosts();
+            const data = JSON.parse(resRead);
+            data.push(dataPost);
+            const resWrite = await writeAllPosts(data);
+            console.log('function createNewPost : resWrite= ', resWrite);
+            return { status: 'ok' , data: resWrite };// אמור לחזור משהו בכלל ?
 
+        }
+    } catch (ErrLogs) {
+        console.log(`Log Error: \n function createNewPost:  catch  \n the meassage: ${ErrLogs}`);
+        res.sendStatus(500);
+    }
+}
