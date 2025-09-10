@@ -1,0 +1,18 @@
+#navLoginRegister {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-around;
+}
+
+.btnLogin {
+    background-color: rgb(48, 184, 184);
+}
+
+.btnLogin:focus {
+    background-color: rgb(23, 141, 141);
+}
+
+.btnLogin:hover {
+    background-color: rgb(23, 141, 141);
+}

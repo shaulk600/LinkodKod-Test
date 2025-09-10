@@ -1,21 +1,15 @@
-import { handlReadRequesting ,handlReadRequestingPostById} from "../controllers/PostsCTRL.js";
+import { handlReadRequesting, handlReadRequestingPostById, handleCreateNewPost } from "../controllers/PostsCTRL.js";
+import { HandleUserRegistration, handleLoginUser } from "../controllers/UserCTRL.js";
 
 export default function ConfigRoutes(app) {
 
-    app.get('/read', (req, res, next) => {
-        console.log(`\nvalid: /read\n`);
-        next();
-    }, handlReadRequesting);
-    
-    app.get('/read/:idPost', (req, res, next) => {
-        console.log(`\nvalid: /read/:idPost\n`);
-        next();
-    }, handlReadRequestingPostById);
+    app.get('/read', handlReadRequesting);
+    app.get('/read/:idPost', handlReadRequestingPostById);
+    app.post('/initPost/', handleCreateNewPost);
 
-    app.get('/initPost/', (req, res, next) => {
-        console.log(`\n valid: /initPost/ \n`);
-        next();
-    }, );
+    // login
+    app.post('/login', handleLoginUser);
+    app.post('/register:idmanager', HandleUserRegistration);
 
 
     app.use('/', (req, res) => {
